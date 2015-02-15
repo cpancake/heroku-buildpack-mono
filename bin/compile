@@ -12,15 +12,14 @@ mktmpdir() {
 }
 
 # config
-MONO_VERSION="2.10.8"
-S3_BUCKET="bh-buildpack-mono"
+MONO_VERSION="3.10.0"
 
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
 
 # s3 packages
-MONO_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/mono-${MONO_VERSION}.tar.gz"
+MONO_PACKAGE="http://s3.amazonaws.com/mono-dependencies/cedar/mono-${MONO_VERSION}.tar.gz"
 
 # vendor directories
 VENDORED_MONO="$(mktmpdir mono)"
