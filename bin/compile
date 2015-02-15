@@ -31,6 +31,7 @@ mkdir -p $VENDORED_MONO  && curl $MONO_PACKAGE -s -o -  | tar xzf - -C $VENDORED
 # vendor node into the slug       
 PATH="$BUILD_DIR/bin:$PATH"
 echo "-----> Vendoring mono $MONO_VERSION"
+ls "$VENDORED_MONO"
 mkdir -p "$BUILD_DIR/mono-build"
 mkdir -p "$BUILD_DIR/mono-build/bin/"
 cp -r "$VENDORED_MONO/mono/bin/" "$BUILD_DIR/mono-build/"
