@@ -22,7 +22,7 @@ CACHE_DIR=$2
 MONO_PACKAGE="http://s3.amazonaws.com/mono-dependencies/cedar/mono-${MONO_VERSION}.tar.gz"
 
 # vendor directories
-VENDORED_MONO="$(mktmpdir mono)/mono"
+VENDORED_MONO="$(mktmpdir mono)"
 
 # download and unpack packages
 echo "-----> Fetching Mono binaries"
@@ -33,15 +33,15 @@ PATH="$BUILD_DIR/bin:$PATH"
 echo "-----> Vendoring mono $MONO_VERSION"
 mkdir -p "$BUILD_DIR/mono-build"
 mkdir -p "$BUILD_DIR/mono-build/bin/"
-cp -r "$VENDORED_MONO/bin/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/bin/" "$BUILD_DIR/mono-build/"
 mkdir -p "$BUILD_DIR/mono-build/etc/"
-cp -r "$VENDORED_MONO/etc/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/etc/" "$BUILD_DIR/mono-build/"
 mkdir -p "$BUILD_DIR/mono-build/include/"
-cp -r "$VENDORED_MONO/include/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/include/" "$BUILD_DIR/mono-build/"
 mkdir -p "$BUILD_DIR/mono-build/lib/"
-cp -r "$VENDORED_MONO/lib/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/lib/" "$BUILD_DIR/mono-build/"
 mkdir -p "$BUILD_DIR/mono-build/share/"
-cp -r "$VENDORED_MONO/share/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/share/" "$BUILD_DIR/mono-build/"
 
 # setting up paths for building
 PATH="$BUILD_DIR/mono-build/bin:$VENDORED_MONO/bin:$PATH"
@@ -51,7 +51,7 @@ export CPPPATH="$INCLUDE_PATH"
 
 #build app
 SLN=$(ls $BUILD_DIR/*.sln | head -1)
-BUILDCMD="$VENDORED_MONO/bin/mono $VENDORED_MONO/lib/mono/4.0/xbuild.exe $SLN"
+BUILDCMD="$VENDORED_MONO/mono/bin/mono $VENDORED_MONO/mono/lib/mono/4.0/xbuild.exe $SLN"
 echo "-----> building via $BUILDCMD"
 eval $BUILDCMD
 
