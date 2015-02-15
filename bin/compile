@@ -49,7 +49,7 @@ PATH="$BUILD_DIR/mono-build/bin:$VENDORED_MONO/mono/bin:$PATH"
 INCLUDE_PATH="$BUILD_DIR/mono-build/include"
 export CPATH="$INCLUDE_PATH"     
 export CPPPATH="$INCLUDE_PATH"
-ln -s /app/mono /$BUILD_DIR/mono-build
+ln -s /$BUILD_DIR/mono-build /app/mono
 
 #build app
 SLN=$(ls $BUILD_DIR/*.sln | head -1)
