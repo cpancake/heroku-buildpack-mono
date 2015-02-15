@@ -57,3 +57,5 @@ BUILDCMD="$VENDORED_MONO/mono/bin/mono $VENDORED_MONO/mono/lib/mono/4.5/xbuild.e
 echo "-----> building via $BUILDCMD"
 eval $BUILDCMD
 
+rm /app/mono
+ln -s /app/mono /app/mono-build
