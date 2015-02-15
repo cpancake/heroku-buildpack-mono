@@ -33,29 +33,25 @@ PATH="$BUILD_DIR/bin:$PATH"
 echo "-----> Vendoring mono $MONO_VERSION"
 mkdir -p "$BUILD_DIR/mono-build"
 mkdir -p "$BUILD_DIR/mono-build/bin/"
-cp -r "$VENDORED_MONO/mono/bin/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/bin/" "$BUILD_DIR/mono/"
 mkdir -p "$BUILD_DIR/mono-build/mono/"
-cp -r "$VENDORED_MONO/mono/mono/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/mono/" "$BUILD_DIR/mono/"
 mkdir -p "$BUILD_DIR/mono-build/include/"
-cp -r "$VENDORED_MONO/mono/include/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/include/" "$BUILD_DIR/mono/"
 mkdir -p "$BUILD_DIR/mono-build/lib/"
-cp -r "$VENDORED_MONO/mono/lib/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/lib/" "$BUILD_DIR/mono/"
 mkdir -p "$BUILD_DIR/mono-build/share/"
-cp -r "$VENDORED_MONO/mono/share/" "$BUILD_DIR/mono-build/"
+cp -r "$VENDORED_MONO/mono/share/" "$BUILD_DIR/mono/"
 
 # setting up paths for building
 MONO_PATH="$VENDORED_MONO/mono/lib/mono/4.0:$VENDORED_MONO/mono/lib/mono/3.5:$VENDORED_MONO/mono/lib/mono/4.5:$VENDORED_MONO/mono/lib/mono/2.0:."
-PATH="$BUILD_DIR/mono-build/bin:$VENDORED_MONO/mono/bin:$PATH"
-INCLUDE_PATH="$BUILD_DIR/mono-build/include"
+PATH="$BUILD_DIR/mono/bin:$VENDORED_MONO/mono/bin:$PATH"
+INCLUDE_PATH="$BUILD_DIR/mono/include"
 export CPATH="$INCLUDE_PATH"     
 export CPPPATH="$INCLUDE_PATH"
-ln -s /$BUILD_DIR/mono-build /app/mono
 
 #build app
 SLN=$(ls $BUILD_DIR/*.sln | head -1)
 BUILDCMD="$VENDORED_MONO/mono/bin/mono $VENDORED_MONO/mono/lib/mono/4.5/xbuild.exe $SLN"
 echo "-----> building via $BUILDCMD"
 eval $BUILDCMD
-
-rm /app/mono
-ln -s /app/mono-build /app/mono
