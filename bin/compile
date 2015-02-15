@@ -44,7 +44,8 @@ mkdir -p "$BUILD_DIR/mono-build/share/"
 cp -r "$VENDORED_MONO/mono/share/" "$BUILD_DIR/mono-build/"
 
 # setting up paths for building
-PATH="$BUILD_DIR/mono-build/bin:$VENDORED_MONO/bin:$PATH"
+MONO_PATH="$VENDORED_MONO/mono/lib/mono/4.0:$VENDORED_MONO/mono/lib/mono/3.5:$VENDORED_MONO/mono/lib/mono/4.5:$VENDORED_MONO/mono/lib/mono/2.0:."
+PATH="$BUILD_DIR/mono-build/bin:$VENDORED_MONO/mono/bin:$PATH"
 INCLUDE_PATH="$BUILD_DIR/mono-build/include"
 export CPATH="$INCLUDE_PATH"     
 export CPPPATH="$INCLUDE_PATH"
