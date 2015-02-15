@@ -22,7 +22,7 @@ CACHE_DIR=$2
 MONO_PACKAGE="http://s3.amazonaws.com/mono-dependencies/cedar/mono-${MONO_VERSION}.tar.gz"
 
 # vendor directories
-VENDORED_MONO="$(mktmpdir mono)"
+VENDORED_MONO="$(mktmpdir mono)/mono"
 
 # download and unpack packages
 echo "-----> Fetching Mono binaries"
